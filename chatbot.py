@@ -4,14 +4,14 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import GPT4AllEmbeddings
-from vector_db import DocumentsFaissDB
+from DocumentsFaissDB import DocumentsFaissDB
 
 
 vectorDB_path = './db'
 documents_path = './documents'
 model_name = 'all-MiniLM-L6-v2.gguf2.f16.gguf'
-# model_file_path = './models/vinallama-7b-chat_q5_0.gguf'
-model_file_path = './models/ggml-vistral-7B-chat-q5_1.gguf'
+model_file_path = './models/vinallama-7b-chat_q5_0.gguf'
+# model_file_path = './models/ggml-vistral-7B-chat-q5_1.gguf'
 
 def load_model():
     llm = CTransformers(
@@ -52,8 +52,8 @@ documentsFaissDB = DocumentsFaissDB(
     chunk_overlap=128
 )
 
-db = documentsFaissDB.create_db()
-# db = documentsFaissDB.load_db()
+# db = documentsFaissDB.create_db()
+db = documentsFaissDB.load_db()
 
 llm = load_model()
 
